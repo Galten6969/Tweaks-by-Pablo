@@ -1,4 +1,5 @@
 [
-  { "code": "XYZ001", "used": false },
+  { "code": "XYZ001", "used": true },
   { "code": "XYZ002", "used": false }
+
 ]
