@@ -4,35 +4,29 @@
     GitHub         : https://github.com/Pablo Escobar
     Version        : 26.02.11
 ##kodsystem
+# Hämta JSON
 $codeUrl = "https://raw.githubusercontent.com/Galten6969/Tweaks-by-Pablo/main/kod.json"
+$json = Invoke-RestMethod -Uri $codeUrl -UseBasicParsing
 
-try {
-    $codes = Invoke-RestMethod -Uri $codeUrl -UseBasicParsing
-} catch {
-    Write-Host "Kunde inte hämta licensfil!" -ForegroundColor Red
-    exit
-}
+# Fråga användaren
+$inputCode = Read-Host "Ange din engångskod"
 
-$userCode = Read-Host "Ange din kod"
+# Kolla koden
+$item = $json | Where-Object { $_.code -eq $inputCode }
 
-$match = $codes | Where-Object { $_.code -eq $userCode }
-
-if (-not $match) {
+if (-not $item) {
     Write-Host "Fel kod!" -ForegroundColor Red
     exit
 }
 
-if ($match.used -eq $true) {
+if ($item.used -eq $true) {
     Write-Host "Den här koden är redan använd!" -ForegroundColor Yellow
     exit
 }
 
 Write-Host "Kod OK!" -ForegroundColor Green
 
-# =========================
-# HÄR UNDER LIGGER DITT RIKTIGA SCRIPT
-# =========================
-
+# --- Lägg ditt riktiga script här ---
 Write-Host "Ditt tweak-script körs nu..."
 ##kodsystem
 
@@ -13190,6 +13184,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
