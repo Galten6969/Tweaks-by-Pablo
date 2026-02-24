@@ -1,4 +1,69 @@
+try {
+    Add-Type -AssemblyName PresentationFramework
 
+    $usedCodesFile = Join-Path $PSScriptRoot "used_codes.txt"
+
+    if (!(Test-Path $usedCodesFile)) {
+        New-Item -Path $usedCodesFile -ItemType File -Force | Out-Null
+    }
+
+    $usedCodes = Get-Content $usedCodesFile
+
+    $validCodes = @(
+        "PABLO-001",
+        "PABLO-002",
+        "PABLO-003"
+    )
+
+    # Skapa enkel input-ruta (WPF)
+    $xaml = @"
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        Title="Aktivering" Height="150" Width="300" WindowStartupLocation="CenterScreen">
+    <StackPanel Margin="10">
+        <TextBlock Text="Ange engångskod:" Margin="0,0,0,5"/>
+        <TextBox Name="CodeBox" Height="25"/>
+        <Button Name="OkBtn" Content="OK" Height="30" Margin="0,10,0,0"/>
+    </StackPanel>
+</Window>
+"@
+
+    $reader = New-Object System.Xml.XmlNodeReader ([xml]$xaml)
+    $window = [Windows.Markup.XamlReader]::Load($reader)
+
+    $CodeBox = $window.FindName("CodeBox")
+    $OkBtn   = $window.FindName("OkBtn")
+
+    $script:enteredCode = $null
+
+    $OkBtn.Add_Click({
+        $script:enteredCode = $CodeBox.Text
+        $window.Close()
+    })
+
+    $window.ShowDialog() | Out-Null
+
+    if ([string]::IsNullOrWhiteSpace($script:enteredCode)) {
+        [System.Windows.MessageBox]::Show("Ingen kod angiven.")
+        return
+    }
+
+    if ($usedCodes -contains $script:enteredCode) {
+        [System.Windows.MessageBox]::Show("Denna kod är redan använd.")
+        return
+    }
+
+    if ($validCodes -notcontains $script:enteredCode) {
+        [System.Windows.MessageBox]::Show("Felaktig kod.")
+        return
+    }
+
+    Add-Content $usedCodesFile $script:enteredCode
+
+}
+catch {
+    [System.Windows.MessageBox]::Show("Fel i kodlåset:`n$($_.Exception.Message)")
+    return
+}
 .NOTES
     Author         : Pablo Escobar
     Runspace Author: @Pablo Escobar
@@ -13161,6 +13226,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
