@@ -8,7 +8,8 @@
 try {
     Add-Type -AssemblyName PresentationFramework
 
-    $usedCodesFile = Join-Path $PSScriptRoot "used_codes.txt"
+    $basePath = if ($PSScriptRoot) { $PSScriptRoot } else { (Get-Location).Path }
+    $usedCodesFile = Join-Path $basePath "used_codes.txt"
 
     if (!(Test-Path $usedCodesFile)) {
         New-Item -Path $usedCodesFile -ItemType File -Force | Out-Null
@@ -13226,6 +13227,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
