@@ -4547,6 +4547,9 @@ function Invoke-WPFtweaksbutton {
     Write-Host "================================="
     Write-Host "--     Allt lyckades    ---"
     Write-Host "================================="
+    Write-Host "Systemet kommer starta om om 10 sekunder..."
+    Start-Sleep -Seconds 10
+    Restart-Computer -Force
 
     # $ButtonType = [System.Windows.MessageBoxButton]::OK
     # $MessageboxTitle = "Tweaks är klara "
@@ -5045,7 +5048,7 @@ function Invoke-WPFundoall {
         $sync.ProcessRunning = $false
         $sync.form.Dispatcher.Invoke([action]{ Set-WinUtilTaskbaritem -state "None" -overlay "checkmark" })
         Write-Host "=================================="
-        Write-Host "---  Undo Tweaks är klara  ---"
+        Write-Host "---  Alla Tweaks är återställda  ---"
         Write-Host "=================================="
 
     }
@@ -13164,6 +13167,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
