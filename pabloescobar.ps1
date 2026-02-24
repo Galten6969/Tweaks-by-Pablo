@@ -1,8 +1,8 @@
 <#
 .NOTES
-    Author         : Chris Titus @ Pablo Escobar
+    Author         : Chris Titus @christitustech
     Runspace Author: @DeveloperDurp
-    GitHub         : https://github.com/ Pablo Escobar
+    GitHub         : https://github.com/ChrisTitusTech
     Version        : 26.02.11
 #>
 
@@ -62,7 +62,7 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
     $script = if ($PSCommandPath) {
         "& { & `'$($PSCommandPath)`' $($argList -join ' ') }"
     } else {
-        "&([ScriptBlock]::Create((irm https://github.com/ Pablo Escobar/winutil/releases/latest/download/winutil.ps1))) $($argList -join ' ')"
+        "&([ScriptBlock]::Create((irm https://github.com/ChrisTitusTech/winutil/releases/latest/download/winutil.ps1))) $($argList -join ' ')"
     }
 
     $powershellCmd = if (Get-Command pwsh -ErrorAction SilentlyContinue) { "pwsh" } else { "powershell" }
@@ -1933,7 +1933,7 @@ function Invoke-WinUtilInstallPSProfile {
         Rename-Item $Profile -NewName ($Profile + '.bak')
     }
 
-    Start-Process pwsh -ArgumentList '-Command "irm https://github.com/ Pablo Escobar/powershell-profile/raw/main/setup.ps1 | iex"'
+    Start-Process pwsh -ArgumentList '-Command "irm https://github.com/ChrisTitusTech/powershell-profile/raw/main/setup.ps1 | iex"'
 }
 function Invoke-WinUtilScript {
     <#
@@ -1982,17 +1982,17 @@ function Invoke-WinUtilScript {
 Function Invoke-WinUtilSponsors {
     <#
     .SYNOPSIS
-        Lists Sponsors from  Pablo Escobar
+        Lists Sponsors from ChrisTitusTech
     .DESCRIPTION
-        Lists Sponsors from  Pablo Escobar
+        Lists Sponsors from ChrisTitusTech
     .EXAMPLE
         Invoke-WinUtilSponsors
     .NOTES
-        This function is used to list sponsors from  Pablo Escobar
+        This function is used to list sponsors from ChrisTitusTech
     #>
     try {
         # Define the URL and headers
-        $url = "https://github.com/sponsors/ Pablo Escobar"
+        $url = "https://github.com/sponsors/ChrisTitusTech"
         $headers = @{
             "User-Agent" = "Chrome/58.0.3029.110"
         }
@@ -2013,8 +2013,8 @@ Function Invoke-WinUtilSponsors {
         $sponsorPattern = '(?<=alt="@)[^"]+'
         $sponsors = [regex]::Matches($currentSponsorsHtml, $sponsorPattern) | ForEach-Object { $_.Value }
 
-        # Exclude " Pablo Escobar" from the sponsors
-        $sponsors = $sponsors | Where-Object { $_ -ne " Pablo Escobar" }
+        # Exclude "ChrisTitusTech" from the sponsors
+        $sponsors = $sponsors | Where-Object { $_ -ne "ChrisTitusTech" }
 
         # Return the sponsors
         return $sponsors
@@ -13111,11 +13111,11 @@ $sync["AboutMenuItem"].Add_Click({
     Invoke-WPFPopup -Action "Hide" -Popups @("Settings")
 
     $authorInfo = @"
-Author   : <a href="https://github.com/ Pablo Escobar">@ Pablo Escobar</a>
+Author   : <a href="https://github.com/ChrisTitusTech">@christitustech</a>
 UI       : <a href="https://github.com/MyDrift-user">@MyDrift-user</a>, <a href="https://github.com/Marterich">@Marterich</a>
 Runspace : <a href="https://github.com/DeveloperDurp">@DeveloperDurp</a>, <a href="https://github.com/Marterich">@Marterich</a>
-GitHub   : <a href="https://github.com/ Pablo Escobar/winutil"> Pablo Escobar/winutil</a>
-Version  : <a href="https://github.com/ Pablo Escobar/winutil/releases/tag/$($sync.version)">$($sync.version)</a>
+GitHub   : <a href="https://github.com/ChrisTitusTech/winutil">ChrisTitusTech/winutil</a>
+Version  : <a href="https://github.com/ChrisTitusTech/winutil/releases/tag/$($sync.version)">$($sync.version)</a>
 "@
     Show-CustomDialog -Title "About" -Message $authorInfo
 })
@@ -13124,13 +13124,13 @@ $sync["SponsorMenuItem"].Add_Click({
     Invoke-WPFPopup -Action "Hide" -Popups @("Settings")
 
     $authorInfo = @"
-<a href="https://github.com/sponsors/ Pablo Escobar">Current sponsors for  Pablo Escobar:</a>
+<a href="https://github.com/sponsors/ChrisTitusTech">Current sponsors for ChrisTitusTech:</a>
 "@
     $authorInfo += "`n"
     try {
         $sponsors = Invoke-WinUtilSponsors
         foreach ($sponsor in $sponsors) {
-            $authorInfo += "<a href=`"https://github.com/sponsors/ Pablo Escobar`">$sponsor</a>`n"
+            $authorInfo += "<a href=`"https://github.com/sponsors/ChrisTitusTech`">$sponsor</a>`n"
         }
     } catch {
         $authorInfo += "An error occurred while fetching or processing the sponsors: $_`n"
