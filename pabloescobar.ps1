@@ -8871,7 +8871,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksActivity": {
     "Content": "Disable Activity History",
     "Description": "This erases recent docs, clipboard, and run history.",
-    "category": "Essential Tweaks",
+    "category": "Viktiga tweaks",
     "panel": "1",
     "registry": [
       {
@@ -8901,7 +8901,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksHiber": {
     "Content": "Disable Hibernation",
     "Description": "Hibernation is really meant for laptops as it saves what's in memory before turning the pc off. It really should never be used",
-    "category": "Essential Tweaks",
+    "category": "Viktiga tweaks",
     "panel": "1",
     "registry": [
       {
@@ -8930,7 +8930,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksWidget": {
     "Content": "Remove Widgets",
     "Description": "Removes the annoying widgets in the bottom left of the taskbar",
-    "category": "Essential Tweaks",
+    "category": "Viktiga tweaks",
     "panel": "1",
     "InvokeScript": [
       "\r\n      # Sometimes if you dont stop Widgets Process for removal to work\r\n      Stop-Process -Name Widgets\r\n      Get-AppxPackage Microsoft.WidgetsPlatformRuntime -AllUsers | Remove-AppxPackage -AllUsers\r\n\r\n      Invoke-WinUtilExplorerUpdate -action \"restart\"\r\n      Write-Host \"Removed widgets\"\r\n      "
@@ -8943,7 +8943,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksLocation": {
     "Content": "Disable Location Tracking",
     "Description": "Disables Location Tracking...DUH!",
-    "category": "Essential Tweaks",
+    "category": "Viktiga tweaks",
     "panel": "1",
     "registry": [
       {
@@ -8980,7 +8980,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksServices": {
     "Content": "Set Services to Manual",
     "Description": "Turns a bunch of system services to manual that don't need to be running all the time. This is pretty harmless as if the service is needed, it will simply start on demand.",
-    "category": "Essential Tweaks",
+    "category": "Viktiga tweaks",
     "panel": "1",
     "service": [
       {
@@ -10109,7 +10109,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksConsumerFeatures": {
     "Content": "Disable ConsumerFeatures",
     "Description": "Windows will not automatically install any games, third-party apps, or application links from the Windows Store for the signed-in user. Some default Apps will be inaccessible (eg. Phone Link)",
-    "category": "Essential Tweaks",
+    "category": "Viktiga tweaks",
     "panel": "1",
     "registry": [
       {
@@ -10125,7 +10125,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksTelemetry": {
     "Content": "Disable Telemetry",
     "Description": "Disables Microsoft Telemetry...Duh",
-    "category": "Essential Tweaks",
+    "category": "Viktiga tweaks",
     "panel": "1",
     "registry": [
       {
@@ -10484,7 +10484,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksRestorePoint": {
     "Content": "Create Restore Point",
     "Description": "Creates a restore point at runtime in case a revert is needed from WinUtil modifications",
-    "category": "Essential Tweaks",
+    "category": "Viktiga tweaks",
     "panel": "1",
     "Checked": "False",
     "registry": [
@@ -10504,7 +10504,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksEndTaskOnTaskbar": {
     "Content": "Enable End Task With Right Click",
     "Description": "Enables option to end task when right clicking a program in the taskbar",
-    "category": "Essential Tweaks",
+    "category": "Viktiga tweaks",
     "panel": "1",
     "registry": [
       {
@@ -10520,7 +10520,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksPowershell7Tele": {
     "Content": "Disable Powershell 7 Telemetry",
     "Description": "This will create an Environment Variable called 'POWERSHELL_TELEMETRY_OPTOUT' with a value of '1' which will tell Powershell 7 to not send Telemetry Data.",
-    "category": "Essential Tweaks",
+    "category": "Viktiga tweaks",
     "panel": "1",
     "InvokeScript": [
       "[Environment]::SetEnvironmentVariable('POWERSHELL_TELEMETRY_OPTOUT', '1', 'Machine')"
@@ -10620,7 +10620,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksWPBT": {
     "Content": "Disable Windows Platform Binary Table (WPBT)",
     "Description": "If enabled then allows your computer vendor to execute a program each time it boots. It enables computer vendors to force install anti-theft software, software drivers, or a software program conveniently. This could also be a security risk.",
-    "category": "Essential Tweaks",
+    "category": "Viktiga tweaks",
     "panel": "1",
     "registry": [
       {
@@ -10714,7 +10714,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksDiskCleanup": {
     "Content": "Run Disk Cleanup",
     "Description": "Runs Disk Cleanup on Drive C: and removes old Windows Updates.",
-    "category": "Essential Tweaks",
+    "category": "Viktiga tweaks",
     "panel": "1",
     "InvokeScript": [
       "\r\n      cleanmgr.exe /d C: /VERYLOWDISK\r\n      Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase\r\n      "
@@ -10724,7 +10724,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksDeleteTempFiles": {
     "Content": "Delete Temporary Files",
     "Description": "Erases TEMP Folders",
-    "category": "Essential Tweaks",
+    "category": "Viktiga tweaks",
     "panel": "1",
     "InvokeScript": [
       "\r\n      Remove-Item -Path \"$Env:Temp\\*\" -Recurse -Force\r\n      Remove-Item -Path \"$Env:SystemRoot\\Temp\\*\" -Recurse -Force\r\n      "
@@ -11265,7 +11265,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksDisableExplorerAutoDiscovery": {
     "Content": "Disable Explorer Automatic Folder Discovery",
     "Description": "Windows Explorer automatically tries to guess the type of the folder based on its contents, slowing down the browsing experience.",
-    "category": "Essential Tweaks",
+    "category": "Viktiga tweaks",
     "panel": "1",
     "InvokeScript": [
       "\r\n      # Previously detected folders\r\n      $bags = \"HKCU:\\Software\\Classes\\Local Settings\\Software\\Microsoft\\Windows\\Shell\\Bags\"\r\n\r\n      # Folder types lookup table\r\n      $bagMRU = \"HKCU:\\Software\\Classes\\Local Settings\\Software\\Microsoft\\Windows\\Shell\\BagMRU\"\r\n\r\n      # Flush Explorer view database\r\n      Remove-Item -Path $bags -Recurse -Force\r\n      Write-Host \"Removed $bags\"\r\n\r\n      Remove-Item -Path $bagMRU -Recurse -Force\r\n      Write-Host \"Removed $bagMRU\"\r\n\r\n      # Every folder\r\n      $allFolders = \"HKCU:\\Software\\Classes\\Local Settings\\Software\\Microsoft\\Windows\\Shell\\Bags\\AllFolders\\Shell\"\r\n\r\n      if (!(Test-Path $allFolders)) {\r\n        New-Item -Path $allFolders -Force\r\n        Write-Host \"Created $allFolders\"\r\n      }\r\n\r\n      # Generic view\r\n      New-ItemProperty -Path $allFolders -Name \"FolderType\" -Value \"NotSpecified\" -PropertyType String -Force\r\n      Write-Host \"Set FolderType to NotSpecified\"\r\n\r\n      Write-Host Please sign out and back in, or restart your computer to apply the changes!\r\n      "
@@ -13167,6 +13167,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
