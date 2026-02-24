@@ -26,8 +26,10 @@ if ($item.used -eq $true) {
 
 Write-Host "Kod OK!" -ForegroundColor Green
 
-# --- Lägg ditt riktiga script här ---
+# --- Lägg ditt tweak-script här ---
 Write-Host "Ditt tweak-script körs nu..."
+
+
 ##kodsystem
 
 # Set DebugPreference based on the -Debug switch
@@ -13184,6 +13186,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
