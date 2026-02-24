@@ -4,11 +4,6 @@
     GitHub         : https://github.com/Pablo Escobar
     Version        : 26.02.11
 #>
-
-# Set DebugPreference based on the -Debug switch
-if ($Debug) {
-    $DebugPreference = "Continue"
-}
 ##lösen
 try {
     Add-Type -AssemblyName PresentationFramework
@@ -76,6 +71,12 @@ catch {
     [System.Windows.MessageBox]::Show("Fel i kodlåset:`n$($_.Exception.Message)")
     return
 }
+
+# Set DebugPreference based on the -Debug switch
+if ($Debug) {
+    $DebugPreference = "Continue"
+}
+
 if ($Config) {
     $PARAM_CONFIG = $Config
 }
@@ -13225,6 +13226,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
