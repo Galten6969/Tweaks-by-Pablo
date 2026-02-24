@@ -12510,8 +12510,8 @@ $inputXML = @'
                             <Border Grid.ColumnSpan="2" Grid.Row="2" Grid.Column="0" Style="{StaticResource BorderStyle}">
                                 <StackPanel Background="{DynamicResource MainBackgroundColor}" Orientation="Horizontal" HorizontalAlignment="Left">
                                     <TextBlock Padding="10">
-                                        Observera: Hovra över objekten för att få en bättre beskrivning. Var försiktig, många av dessa justeringar kan ändra ditt system kraftigt.
-                                        <LineBreak/>Rekommenderade val är för vanliga användare. Om du är osäker, markera INGET annat!
+                                        Observera: Hovra over objekten för att få en battre beskrivning. Var forsiktig, många av dessa justeringar kan ändra ditt system kraftigt.
+                                        <LineBreak/>Rekommenderade val är för vanliga anvandare. Om du är osaker, markera INGET annat!
                                     </TextBlock>
                                 </StackPanel>
                             </Border>
@@ -13167,6 +13167,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
