@@ -9,34 +9,6 @@
 if ($Debug) {
     $DebugPreference = "Continue"
 }
-
-if ($Config) {
-    $PARAM_CONFIG = $Config
-}
-
-$PARAM_RUN = $false
-# Handle the -Run switch
-if ($Run) {
-    Write-Host "Running config file tasks..."
-    $PARAM_RUN = $true
-}
-
-# Load DLLs
-Add-Type -AssemblyName PresentationFramework
-Add-Type -AssemblyName System.Windows.Forms
-
-# Variable to sync between runspaces
-$sync = [Hashtable]::Synchronized(@{})
-$sync.PSScriptRoot = $PSScriptRoot
-$sync.version = "26.02.11"
-$sync.configs = @{}
-$sync.Buttons = [System.Collections.Generic.List[PSObject]]::new()
-$sync.ProcessRunning = $false
-$sync.selectedApps = [System.Collections.Generic.List[string]]::new()
-$sync.currentTab = "Install"
-$sync.selectedAppsStackPanel
-$sync.selectedAppsPopup
-
 ##lösen
 try {
     Add-Type -AssemblyName PresentationFramework
@@ -104,6 +76,32 @@ catch {
     [System.Windows.MessageBox]::Show("Fel i kodlåset:`n$($_.Exception.Message)")
     return
 }
+if ($Config) {
+    $PARAM_CONFIG = $Config
+}
+
+$PARAM_RUN = $false
+# Handle the -Run switch
+if ($Run) {
+    Write-Host "Running config file tasks..."
+    $PARAM_RUN = $true
+}
+
+# Load DLLs
+Add-Type -AssemblyName PresentationFramework
+Add-Type -AssemblyName System.Windows.Forms
+
+# Variable to sync between runspaces
+$sync = [Hashtable]::Synchronized(@{})
+$sync.PSScriptRoot = $PSScriptRoot
+$sync.version = "26.02.11"
+$sync.configs = @{}
+$sync.Buttons = [System.Collections.Generic.List[PSObject]]::new()
+$sync.ProcessRunning = $false
+$sync.selectedApps = [System.Collections.Generic.List[string]]::new()
+$sync.currentTab = "Install"
+$sync.selectedAppsStackPanel
+$sync.selectedAppsPopup
 
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
     Write-Output "Winutil needs to be run as Administrator. Attempting to relaunch."
@@ -13227,6 +13225,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
