@@ -3,13 +3,17 @@
     Runspace Author: @Pablo Escobar
     GitHub         : https://github.com/Pablo Escobar
     Version        : 26.02.11
-#>
-##lösen
+##kodsystem
+>
 try {
     Add-Type -AssemblyName PresentationFramework
 
-    $basePath = if ($PSScriptRoot) { $PSScriptRoot } else { (Get-Location).Path }
-    $usedCodesFile = Join-Path $basePath "used_codes.txt"
+    $sharedPath = "C:\ProgramData\YourApp"
+    if (!(Test-Path $sharedPath)) {
+        New-Item -Path $sharedPath -ItemType Directory -Force | Out-Null
+    }
+
+    $usedCodesFile = Join-Path $sharedPath "used_codes.txt"
 
     if (!(Test-Path $usedCodesFile)) {
         New-Item -Path $usedCodesFile -ItemType File -Force | Out-Null
@@ -23,55 +27,31 @@ try {
         "PABLO-003"
     )
 
-    # Skapa enkel input-ruta (WPF)
-    $xaml = @"
-<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        Title="Aktivering" Height="150" Width="300" WindowStartupLocation="CenterScreen">
-    <StackPanel Margin="10">
-        <TextBlock Text="Ange engångskod:" Margin="0,0,0,5"/>
-        <TextBox Name="CodeBox" Height="25"/>
-        <Button Name="OkBtn" Content="OK" Height="30" Margin="0,10,0,0"/>
-    </StackPanel>
-</Window>
-"@
+    $code = Read-Host "Ange engångskod"
 
-    $reader = New-Object System.Xml.XmlNodeReader ([xml]$xaml)
-    $window = [Windows.Markup.XamlReader]::Load($reader)
-
-    $CodeBox = $window.FindName("CodeBox")
-    $OkBtn   = $window.FindName("OkBtn")
-
-    $script:enteredCode = $null
-
-    $OkBtn.Add_Click({
-        $script:enteredCode = $CodeBox.Text
-        $window.Close()
-    })
-
-    $window.ShowDialog() | Out-Null
-
-    if ([string]::IsNullOrWhiteSpace($script:enteredCode)) {
-        [System.Windows.MessageBox]::Show("Ingen kod angiven.")
-        return
+    if ([string]::IsNullOrWhiteSpace($code)) {
+        Write-Host "Ingen kod angiven."
+        exit
     }
 
-    if ($usedCodes -contains $script:enteredCode) {
-        [System.Windows.MessageBox]::Show("Denna kod är redan använd.")
-        return
+    if ($usedCodes -contains $code) {
+        Write-Host "Denna kod är redan använd."
+        exit
     }
 
-    if ($validCodes -notcontains $script:enteredCode) {
-        [System.Windows.MessageBox]::Show("Felaktig kod.")
-        return
+    if ($validCodes -notcontains $code) {
+        Write-Host "Felaktig kod."
+        exit
     }
 
-    Add-Content $usedCodesFile $script:enteredCode
-
+    Add-Content $usedCodesFile $code
 }
 catch {
-    [System.Windows.MessageBox]::Show("Fel i kodlåset:`n$($_.Exception.Message)")
-    return
+    Write-Host "Fel i licenskontroll: $($_.Exception.Message)"
+    exit
 }
+
+##kodsystem
 
 # Set DebugPreference based on the -Debug switch
 if ($Debug) {
@@ -13227,6 +13207,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
