@@ -5,24 +5,31 @@
     Version        : 26.02.11
 ##kodsystem
 # =========================================
-# PabloEscobar.ps1 - Engångskodskontroll
+# PabloEscobar.ps1 - Engångskodskontroll med GitHub auto-update
 # =========================================
 
-# URL till raw JSON med koder
-$codeUrl = "https://raw.githubusercontent.com/Galten6969/Tweaks-by-Pablo/main/kod.json"
+# --- Inställningar ---
+$repoOwner = "Galten6969"
+$repoName = "Tweaks-by-Pablo"
+$filePath  = "kod.json"
+$branch    = "main"
+$token     = "ghp_1234567890abcdefghijklmNOPQRSTUVWXYZ"  # ← Lägg in din token här
+
+# URL till raw JSON
+$rawUrl = "https://raw.githubusercontent.com/$repoOwner/$repoName/$branch/$filePath"
 
 # Hämta JSON
 try {
-    $json = Invoke-RestMethod -Uri $codeUrl -UseBasicParsing
+    $json = Invoke-RestMethod -Uri $rawUrl -UseBasicParsing
 } catch {
     Write-Host "Kunde inte hämta licensfil!" -ForegroundColor Red
     exit
 }
 
-# Fråga användaren om engångskod
+# Be användaren om kod
 $inputCode = Read-Host "Ange din engångskod"
 
-# Kolla om koden finns i JSON
+# Kolla om koden finns
 $item = $json | Where-Object { $_.code -eq $inputCode }
 
 if (-not $item) {
@@ -37,16 +44,37 @@ if ($item.used -eq $true) {
 
 Write-Host "Kod OK! Kör script..." -ForegroundColor Green
 
+# Markera koden som använd
+$item.used = $true
+
+# --- Hämta filens SHA från GitHub (krävs för uppdatering) ---
+$apiUrl = "https://api.github.com/repos/$repoOwner/$repoName/contents/$filePath?ref=$branch"
+$sha = (Invoke-RestMethod -Uri $apiUrl -Headers @{Authorization = "token $token"}).sha
+
+# Konvertera JSON till Base64
+$updatedJson = $json | ConvertTo-Json -Compress
+$bytes = [System.Text.Encoding]::UTF8.GetBytes($updatedJson)
+$base64Content = [Convert]::ToBase64String($bytes)
+
+# --- Skicka PUT-request till GitHub ---
+$body = @{
+    message = "Markera kod $inputCode som used via PabloEscobar.ps1"
+    content = $base64Content
+    sha     = $sha
+    branch  = $branch
+} | ConvertTo-Json
+
+Invoke-RestMethod -Uri $apiUrl -Method PUT -Headers @{Authorization = "token $token"} -Body $body -ContentType "application/json"
+
+Write-Host "Koden är nu markerad som använd på GitHub!" -ForegroundColor Green
+
 # =========================
-# HÄR LIGGER DITT TWEAK-SCRIPT
+# Kör ditt tweak-script
 # =========================
 Write-Host "Ditt tweak-script körs nu..." -ForegroundColor Cyan
-
-# --- Exempel på tweak-funktion ---
-# Place your real code below
 function Run-Tweaks {
     Write-Host "Tweaks aktiveras..." -ForegroundColor Green
-    # Lägg till ditt script här
+    # Lägg till ditt riktiga script här
 }
 Run-Tweaks
 ##kodsystem
@@ -13205,6 +13233,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
