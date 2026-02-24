@@ -9944,7 +9944,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksBraveDebloat": {
     "Content": "Brave Debloat",
     "Description": "Disables various annoyances like Brave Rewards,Leo AI,Crypto Wallet and VPN",
-    "category": "z__Advanced Tweaks - CAUTION",
+    "category": "z__Avancerade Tweaks - VARNING",
     "panel": "1",
     "registry": [
       {
@@ -9988,7 +9988,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksEdgeDebloat": {
     "Content": "Edge Debloat",
     "Description": "Disables various telemetry options, popups, and other annoyances in Edge.",
-    "category": "z__Advanced Tweaks - CAUTION",
+    "category": "z__Avancerade Tweaks - VARNING",
     "panel": "1",
     "registry": [
       {
@@ -10224,7 +10224,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksRemoveEdge": {
     "Content": "Remove Microsoft Edge",
     "Description": "Unblocks Microsoft Edge uninstaller restrictions than uses that uninstaller to remove Microsoft Edge",
-    "category": "z__Advanced Tweaks - CAUTION",
+    "category": "z__Avancerade Tweaks - VARNING",
     "panel": "1",
     "InvokeScript": [
       "Invoke-WinUtilRemoveEdge"
@@ -10237,7 +10237,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksUTC": {
     "Content": "Set Time to UTC (Dual Boot)",
     "Description": "Essential for computers that are dual booting. Fixes the time sync with Linux Systems.",
-    "category": "z__Advanced Tweaks - CAUTION",
+    "category": "z__Avancerade Tweaks - VARNING",
     "panel": "1",
     "registry": [
       {
@@ -10253,7 +10253,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksRemoveOneDrive": {
     "Content": "Remove OneDrive",
     "Description": "Denys permission to remove onedrive user files than uses its own uninstaller to remove it than brings back permissions",
-    "category": "z__Advanced Tweaks - CAUTION",
+    "category": "z__Avancerade Tweaks - VARNING",
     "panel": "1",
     "InvokeScript": [
       "\r\n      # Deny permission to remove OneDrive folder\r\n      icacls $Env:OneDrive /deny \"Administrators:(D,DC)\"\r\n\r\n      Write-Host \"Uninstalling OneDrive...\"\r\n      Start-Process 'C:\\Windows\\System32\\OneDriveSetup.exe' -ArgumentList '/uninstall' -Wait\r\n\r\n      # Some of OneDrive files use explorer, and OneDrive uses FileCoAuth\r\n      Write-Host \"Removing leftover OneDrive Files...\"\r\n      Stop-Process -Name FileCoAuth,Explorer\r\n      Remove-Item \"$Env:LocalAppData\\Microsoft\\OneDrive\" -Recurse -Force\r\n      Remove-Item \"C:\\ProgramData\\Microsoft OneDrive\" -Recurse -Force\r\n\r\n      # Grant back permission to accses OneDrive folder\r\n      icacls $Env:OneDrive /grant \"Administrators:(D,DC)\"\r\n\r\n      # Disable OneSyncSvc\r\n      Set-Service -Name OneSyncSvc -StartupType Disabled\r\n      "
@@ -10266,7 +10266,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksRemoveHome": {
     "Content": "Remove Home from Explorer",
     "Description": "Removes the Home from Explorer and sets This PC as default",
-    "category": "z__Advanced Tweaks - CAUTION",
+    "category": "z__Avancerade Tweaks - VARNING",
     "panel": "1",
     "InvokeScript": [
       "\r\n      Remove-Item \"HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Desktop\\NameSpace\\{f874310e-b6b7-47dc-bc84-b9e6b38f5903}\"\r\n      Set-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced\" -Name LaunchTo -Value 1\r\n      "
@@ -10279,7 +10279,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksRemoveGallery": {
     "Content": "Remove Gallery from explorer",
     "Description": "Removes the Gallery from Explorer and sets This PC as default",
-    "category": "z__Advanced Tweaks - CAUTION",
+    "category": "z__Avancerade Tweaks - VARNING",
     "panel": "1",
     "InvokeScript": [
       "\r\n      Remove-Item \"HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Desktop\\NameSpace\\{e88865ea-0e1c-4e20-9aa6-edcd0212c87c}\"\r\n      "
@@ -10292,7 +10292,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksDisplay": {
     "Content": "Set Display for Performance",
     "Description": "Sets the system preferences to performance. You can do this manually with sysdm.cpl as well.",
-    "category": "z__Advanced Tweaks - CAUTION",
+    "category": "z__Avancerade Tweaks - VARNING",
     "panel": "1",
     "registry": [
       {
@@ -10391,7 +10391,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksXboxRemoval": {
     "Content": "Remove Xbox & Gaming Components",
     "Description": "Removes Xbox services, the Xbox app, Game Bar, and related authentication components.",
-    "category": "z__Advanced Tweaks - CAUTION",
+    "category": "z__Avancerade Tweaks - VARNING",
     "panel": "1",
     "appx": [
       "Microsoft.XboxIdentityProvider",
@@ -10405,7 +10405,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksDeBloat": {
     "Content": "Remove ALL MS Store Apps - NOT RECOMMENDED",
     "Description": "USE WITH CAUTION!!! This will remove ALL Microsoft store apps.",
-    "category": "z__Advanced Tweaks - CAUTION",
+    "category": "z__Avancerade Tweaks - VARNING",
     "panel": "1",
     "appx": [
       "Microsoft.Microsoft3DViewer",
@@ -10533,7 +10533,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksStorage": {
     "Content": "Disable Storage Sense",
     "Description": "Storage Sense deletes temp files automatically.",
-    "category": "z__Advanced Tweaks - CAUTION",
+    "category": "z__Avancerade Tweaks - VARNING",
     "panel": "1",
     "registry": [
       {
@@ -10549,7 +10549,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksRemoveCopilot": {
     "Content": "Disable Microsoft Copilot",
     "Description": "Disables MS Copilot AI built into Windows since 23H2.",
-    "category": "z__Advanced Tweaks - CAUTION",
+    "category": "z__Avancerade Tweaks - VARNING",
     "panel": "1",
     "registry": [
       {
@@ -10636,7 +10636,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksRazerBlock": {
     "Content": "Block Razer Software Installs",
     "Description": "Blocks ALL Razer Software installations. The hardware works fine without any software. WARNING: this will also block all Windows third-party driver installations.",
-    "category": "z__Advanced Tweaks - CAUTION",
+    "category": "z__Avancerade Tweaks - VARNING",
     "panel": "1",
     "registry": [
       {
@@ -10665,7 +10665,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksDisableNotifications": {
     "Content": "Disable Notification Tray/Calendar",
     "Description": "Disables all Notifications INCLUDING Calendar",
-    "category": "z__Advanced Tweaks - CAUTION",
+    "category": "z__Avancerade Tweaks - VARNING",
     "panel": "1",
     "registry": [
       {
@@ -10688,7 +10688,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksBlockAdobeNet": {
     "Content": "Adobe Network Block",
     "Description": "Reduce user interruptions by selectively blocking connections to Adobe's activation and telemetry servers. Credit: Ruddernation-Designs",
-    "category": "z__Advanced Tweaks - CAUTION",
+    "category": "z__Avancerade Tweaks - VARNING",
     "panel": "1",
     "InvokeScript": [
       "\r\n      $hostsUrl = \"https://github.com/Ruddernation-Designs/Adobe-URL-Block-List/raw/refs/heads/master/hosts\"\r\n      $hosts = \"$env:SystemRoot\\System32\\drivers\\etc\\hosts\"\r\n\r\n      Copy-Item $hosts \"$env:SystemRoot\\System32\\drivers\\etc\\hosts\\$hosts.bak\"\r\n      Invoke-WebRequest $hostsUrl -OutFile $hosts\r\n      ipconfig /flushdns\r\n\r\n      Write-Host \"Added Adobe url block list from host file\"\r\n      "
@@ -10701,7 +10701,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksRightClickMenu": {
     "Content": "Set Classic Right-Click Menu ",
     "Description": "Great Windows 11 tweak to bring back good context menus when right clicking things in explorer.",
-    "category": "z__Advanced Tweaks - CAUTION",
+    "category": "z__Avancerade Tweaks - VARNING",
     "panel": "1",
     "InvokeScript": [
       "\r\n      New-Item -Path \"HKCU:\\Software\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\" -Name \"InprocServer32\" -force -value \"\"\r\n      Write-Host Restarting explorer.exe ...\r\n      Stop-Process -Name \"explorer\" -Force\r\n      "
@@ -10734,7 +10734,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksIPv46": {
     "Content": "Prefer IPv4 over IPv6",
     "Description": "To set the IPv4 preference can have latency and security benefits on private networks where IPv6 is not configured.",
-    "category": "z__Advanced Tweaks - CAUTION",
+    "category": "z__Avancerade Tweaks - VARNING",
     "panel": "1",
     "registry": [
       {
@@ -10750,7 +10750,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksTeredo": {
     "Content": "Disable Teredo",
     "Description": "Teredo network tunneling is a ipv6 feature that can cause additional latency, but may cause problems with some games",
-    "category": "z__Advanced Tweaks - CAUTION",
+    "category": "z__Avancerade Tweaks - VARNING",
     "panel": "1",
     "registry": [
       {
@@ -10772,7 +10772,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksDisableIPv6": {
     "Content": "Disable IPv6",
     "Description": "Disables IPv6.",
-    "category": "z__Advanced Tweaks - CAUTION",
+    "category": "z__Avancerade Tweaks - VARNING",
     "panel": "1",
     "registry": [
       {
@@ -10794,7 +10794,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksDisableBGapps": {
     "Content": "Disable Background Apps",
     "Description": "Disables all Microsoft Store apps from running in the background, which has to be done individually since Win11",
-    "category": "z__Advanced Tweaks - CAUTION",
+    "category": "z__Avancerade Tweaks - VARNING",
     "panel": "1",
     "registry": [
       {
@@ -10810,7 +10810,7 @@ $sync.configs.tweaks = @'
   "WPFTweaksDisableFSO": {
     "Content": "Disable Fullscreen Optimizations",
     "Description": "Disables FSO in all applications. NOTE: This will disable Color Management in Exclusive Fullscreen",
-    "category": "z__Advanced Tweaks - CAUTION",
+    "category": "z__Avancerade Tweaks - VARNING",
     "panel": "1",
     "registry": [
       {
@@ -11233,14 +11233,14 @@ $sync.configs.tweaks = @'
   },
   "WPFOOSUbutton": {
     "Content": "Run OO Shutup 10",
-    "category": "z__Advanced Tweaks - CAUTION",
+    "category": "z__Avancerade Tweaks - VARNING",
     "panel": "1",
     "Type": "Button",
     "link": "https://winutil.christitus.com/dev/tweaks/z--advanced-tweaks---caution/oosubutton"
   },
   "WPFchangedns": {
     "Content": "DNS",
-    "category": "z__Advanced Tweaks - CAUTION",
+    "category": "z__Avancerade Tweaks - VARNING",
     "panel": "1",
     "Type": "Combobox",
     "ComboItems": "Default DHCP Google Cloudflare Cloudflare_Malware Cloudflare_Malware_Adult Open_DNS Quad9 AdGuard_Ads_Trackers AdGuard_Ads_Trackers_Malware_Adult",
@@ -13167,6 +13167,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
