@@ -4,52 +4,39 @@
     GitHub         : https://github.com/Pablo Escobar
     Version        : 26.02.11
 ##kodsystem
->
-try {
-    Add-Type -AssemblyName PresentationFramework
+# URL till “raw” JSON‑filen
+$url = "https://raw.githubusercontent.com/Galten6969/Tweaks-by-Pablo/main/kod.json"
 
-    $sharedPath = "C:\ProgramData\YourApp"
-    if (!(Test-Path $sharedPath)) {
-        New-Item -Path $sharedPath -ItemType Directory -Force | Out-Null
-    }
+# Läs JSON från GitHub
+$json = Invoke-RestMethod -Uri $url -UseBasicParsing
 
-    $usedCodesFile = Join-Path $sharedPath "used_codes.txt"
+# Fråga efter användarens kod
+$inputCode = Read-Host "Ange din engångskod"
 
-    if (!(Test-Path $usedCodesFile)) {
-        New-Item -Path $usedCodesFile -ItemType File -Force | Out-Null
-    }
+# Hitta kod i JSON
+$item = $json | Where‑Object { $_.code ‑eq $inputCode }
 
-    $usedCodes = Get-Content $usedCodesFile
-
-    $validCodes = @(
-        "PABLO-001",
-        "PABLO-002",
-        "PABLO-003"
-    )
-
-    $code = Read-Host "Ange engångskod"
-
-    if ([string]::IsNullOrWhiteSpace($code)) {
-        Write-Host "Ingen kod angiven."
-        exit
-    }
-
-    if ($usedCodes -contains $code) {
-        Write-Host "Denna kod är redan använd."
-        exit
-    }
-
-    if ($validCodes -notcontains $code) {
-        Write-Host "Felaktig kod."
-        exit
-    }
-
-    Add-Content $usedCodesFile $code
-}
-catch {
-    Write-Host "Fel i licenskontroll: $($_.Exception.Message)"
+if (-not $item) {
+    Write‑Host "Fel kod!" ‑ForegroundColor Red
     exit
 }
+
+if ($item.used ‑eq $true) {
+    Write‑Host "Den här koden är redan använd!" ‑ForegroundColor Yellow
+    exit
+}
+
+# Markera koden som använd
+$item.used = $true
+
+Write‑Host "Kod godkänd! Kör script..." ‑ForegroundColor Green
+
+# Exempel på kod som körs
+# — Skriv din funktion här —
+# Write‑Host "Din hemliga funktion körs…"
+
+# Spara ändrad JSON lokalt
+$json | ConvertTo-Json | Out-File "lokal_kod.json"
 
 ##kodsystem
 
@@ -13207,6 +13194,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
