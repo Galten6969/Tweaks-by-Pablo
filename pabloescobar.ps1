@@ -62,7 +62,7 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
     $script = if ($PSCommandPath) {
         "& { & `'$($PSCommandPath)`' $($argList -join ' ') }"
     } else {
-        "&([ScriptBlock]::Create((irm https://raw.githubusercontent.com/Galten6969/Tweaks-by-Pablo/main/pabloescobar.ps1))) $($argList -join ' ')"
+        "&([ScriptBlock]::Create((irm https://github.com/Galten6969/Tweaks-by-Pablo/releases/latest/download/pabloescobar.ps1))) $($argList -join ' ')"
     }
 
     $powershellCmd = if (Get-Command pwsh -ErrorAction SilentlyContinue) { "pwsh" } else { "powershell" }
@@ -13164,6 +13164,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
