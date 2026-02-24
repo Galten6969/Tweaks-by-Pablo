@@ -4,14 +4,25 @@
     GitHub         : https://github.com/Pablo Escobar
     Version        : 26.02.11
 ##kodsystem
-# Hämta JSON från GitHub (raw)
-$codeUrl = "https://raw.githubusercontent.com/Galten6969/Tweaks-by-Pablo/main/kod.json"
-$json = Invoke-RestMethod -Uri $codeUrl -UseBasicParsing
+# =========================================
+# PabloEscobar.ps1 - Engångskodskontroll
+# =========================================
 
-# Be användaren om kod
+# URL till raw JSON med koder
+$codeUrl = "https://raw.githubusercontent.com/Galten6969/Tweaks-by-Pablo/main/kod.json"
+
+# Hämta JSON
+try {
+    $json = Invoke-RestMethod -Uri $codeUrl -UseBasicParsing
+} catch {
+    Write-Host "Kunde inte hämta licensfil!" -ForegroundColor Red
+    exit
+}
+
+# Fråga användaren om engångskod
 $inputCode = Read-Host "Ange din engångskod"
 
-# Kolla om koden finns
+# Kolla om koden finns i JSON
 $item = $json | Where-Object { $_.code -eq $inputCode }
 
 if (-not $item) {
@@ -24,10 +35,20 @@ if ($item.used -eq $true) {
     exit
 }
 
-Write-Host "Kod OK!" -ForegroundColor Green
+Write-Host "Kod OK! Kör script..." -ForegroundColor Green
 
-# --- Lägg ditt tweak-script här ---
-Write-Host "Ditt tweak-script körs nu..."
+# =========================
+# HÄR LIGGER DITT TWEAK-SCRIPT
+# =========================
+Write-Host "Ditt tweak-script körs nu..." -ForegroundColor Cyan
+
+# --- Exempel på tweak-funktion ---
+# Place your real code below
+function Run-Tweaks {
+    Write-Host "Tweaks aktiveras..." -ForegroundColor Green
+    # Lägg till ditt script här
+}
+Run-Tweaks
 ##kodsystem
 
 # Set DebugPreference based on the -Debug switch
@@ -13184,6 +13205,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
