@@ -236,7 +236,7 @@ function Find-TweaksByNameOrDescription {
     # Reset the visibility if the search string is empty or the search is cleared
     if ([string]::IsNullOrWhiteSpace($SearchString)) {
         # Show all categories
-        $tweakspanel = $sync.Form.FindName("Pablospanel")
+        $tweakspanel = $sync.Form.FindName("tweakspanel")
         $tweakspanel.Children | ForEach-Object {
             $_.Visibility = [Windows.Visibility]::Visible
 
@@ -12760,7 +12760,7 @@ Initialize-WPFUI -targetGridName "appscategory"
 
 Initialize-WPFUI -targetGridName "appspanel"
 
-Invoke-WPFUIElements -configVariable $sync.configs.tweaks -targetGridName "Pablosspanel" -columncount 2
+Invoke-WPFUIElements -configVariable $sync.configs.tweaks -targetGridName "Tweakspanel" -columncount 2
 
 Invoke-WPFUIElements -configVariable $sync.configs.feature -targetGridName "featurespanel" -columncount 2
 
