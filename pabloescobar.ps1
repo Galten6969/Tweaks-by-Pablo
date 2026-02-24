@@ -6,16 +6,6 @@
     Version        : 26.02.11
 #>
 
-[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
-$OutputEncoding = [System.Text.Encoding]::UTF8
-[System.Threading.Thread]::CurrentThread.CurrentCulture = "sv-SE"
-[System.Threading.Thread]::CurrentThread.CurrentUICulture = "sv-SE"
-param (
-    [switch]$Debug,
-    [string]$Config,
-    [switch]$Run
-)
-
 # Set DebugPreference based on the -Debug switch
 if ($Debug) {
     $DebugPreference = "Continue"
@@ -13171,6 +13161,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
