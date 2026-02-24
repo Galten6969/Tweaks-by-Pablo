@@ -5048,7 +5048,7 @@ function Invoke-WPFundoall {
         $sync.ProcessRunning = $false
         $sync.form.Dispatcher.Invoke([action]{ Set-WinUtilTaskbaritem -state "None" -overlay "checkmark" })
         Write-Host "=================================="
-        Write-Host "---  Alla Tweaks är återställda  ---"
+        Write-Host "---  Alla Tweaks är aterställda  ---"
         Write-Host "=================================="
 
     }
@@ -12510,7 +12510,7 @@ $inputXML = @'
                             <Border Grid.ColumnSpan="2" Grid.Row="2" Grid.Column="0" Style="{StaticResource BorderStyle}">
                                 <StackPanel Background="{DynamicResource MainBackgroundColor}" Orientation="Horizontal" HorizontalAlignment="Left">
                                     <TextBlock Padding="10">
-                                        Observera: Hovra over objekten for att få en battre beskrivning. Var forsiktig, många av dessa justeringar kan ändra ditt system kraftigt.
+                                        Observera: Hovra over objekten for att fa en battre beskrivning. Var forsiktig, manga av dessa justeringar kan ändra ditt system kraftigt.
                                         <LineBreak/>Rekommenderade val är for vanliga anvandare. Om du är osaker, markera INGET annat!
                                     </TextBlock>
                                 </StackPanel>
@@ -13167,6 +13167,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
