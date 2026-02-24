@@ -4,14 +4,14 @@
     GitHub         : https://github.com/Pablo Escobar
     Version        : 26.02.11
 ##kodsystem
-# Hämta JSON
+# Hämta JSON från GitHub (raw)
 $codeUrl = "https://raw.githubusercontent.com/Galten6969/Tweaks-by-Pablo/main/kod.json"
 $json = Invoke-RestMethod -Uri $codeUrl -UseBasicParsing
 
-# Fråga användaren
+# Be användaren om kod
 $inputCode = Read-Host "Ange din engångskod"
 
-# Kolla koden
+# Kolla om koden finns
 $item = $json | Where-Object { $_.code -eq $inputCode }
 
 if (-not $item) {
@@ -28,8 +28,6 @@ Write-Host "Kod OK!" -ForegroundColor Green
 
 # --- Lägg ditt tweak-script här ---
 Write-Host "Ditt tweak-script körs nu..."
-
-
 ##kodsystem
 
 # Set DebugPreference based on the -Debug switch
@@ -13186,6 +13184,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
