@@ -1,84 +1,4 @@
-Add-Type -AssemblyName PresentationFramework
 
-$usedCodesFile = "$PSScriptRoot\used_codes.txt"
-
-if (!(Test-Path $usedCodesFile)) {
-    New-Item -Path $usedCodesFile -ItemType File -Force | Out-Null
-}
-
-$usedCodes = Get-Content $usedCodesFile
-
-$validCodes = @(
-    "PABLO-001",
-    "PABLO-002",
-    "PABLO-003"
-)
-
-$code = [System.Windows.MessageBox]::Show(
-    "Skriv in din engångskod i nästa ruta.",
-    "Aktivering",
-    "OKCancel",
-    "Information"
-)
-
-$code = Read-Host "Engångskod"
-
-if ([string]::IsNullOrWhiteSpace($code)) {
-    [System.Windows.MessageBox]::Show("Ingen kod angiven. Programmet avslutas.")
-    return
-}
-
-if ($usedCodes -contains $code) {
-    [System.Windows.MessageBox]::Show("Denna kod är redan använd.")
-    return
-}
-
-if ($validCodes -notcontains $code) {
-    [System.Windows.MessageBox]::Show("Felaktig kod.")
-    return
-}
-
-Add-Content $usedCodesFile $code
-# ================== OTP LOCK ==================
-$usedCodesFile = "$PSScriptRoot\used_codes.txt"
-
-if (!(Test-Path $usedCodesFile)) {
-    New-Item $usedCodesFile -ItemType File | Out-Null
-}
-
-$usedCodes = Get-Content $usedCodesFile
-
-$validCodes = @(
-    "PABLO-001",
-    "PABLO-002",
-    "PABLO-003"
-)
-
-$code = [Microsoft.VisualBasic.Interaction]::InputBox(
-    "Enter your one-time activation code:",
-    "Activation Required",
-    ""
-)
-
-if ([string]::IsNullOrWhiteSpace($code)) {
-    [System.Windows.MessageBox]::Show("No code entered. Exiting.")
-    exit
-}
-
-if ($usedCodes -contains $code) {
-    [System.Windows.MessageBox]::Show("This code has already been used.")
-    exit
-}
-
-if ($validCodes -notcontains $code) {
-    [System.Windows.MessageBox]::Show("Invalid activation code.")
-    exit
-}
-
-Add-Content $usedCodesFile $code
-# ================== OTP LOCK END ==================
-
-<#
 .NOTES
     Author         : Pablo Escobar
     Runspace Author: @Pablo Escobar
@@ -13251,6 +13171,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
