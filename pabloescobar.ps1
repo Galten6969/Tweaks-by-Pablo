@@ -5045,7 +5045,7 @@ function Invoke-WPFundoall {
         $sync.ProcessRunning = $false
         $sync.form.Dispatcher.Invoke([action]{ Set-WinUtilTaskbaritem -state "None" -overlay "checkmark" })
         Write-Host "=================================="
-        Write-Host "---  Undo Tweaks are Finished  ---"
+        Write-Host "---  Undo Tweaks är klara  ---"
         Write-Host "=================================="
 
     }
@@ -13164,6 +13164,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
