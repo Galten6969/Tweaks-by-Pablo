@@ -4,32 +4,51 @@
     GitHub         : https://github.com/Pablo Escobar
     Version        : 26.02.11
 ##kodsystem
-# ======= Inställningar =======
+# =========================================
+# PabloEscobar.ps1 - Engångskodskontroll med GitHub auto-update
+# =========================================
+
+# --- Inställningar ---
 $repoOwner = "Galten6969"
 $repoName  = "Tweaks-by-Pablo"
 $filePath  = "kod.json"
 $branch    = "main"
-$token     = Get-Content "$env:APPDATA\github_token.txt" | ConvertTo-SecureString | ConvertFrom-SecureString
+$token     = "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"  # ← Lägg in din GitHub PAT här
 
-# GitHub API URL
-$apiUrl = "https://api.github.com/repos/$repoOwner/$repoName/contents/$filePath?ref=$branch"
+# URL till raw JSON
 $rawUrl = "https://raw.githubusercontent.com/$repoOwner/$repoName/$branch/$filePath"
 
 # Hämta JSON
-$json = Invoke-RestMethod -Uri $rawUrl -UseBasicParsing
+try {
+    $json = Invoke-RestMethod -Uri $rawUrl -UseBasicParsing
+} catch {
+    Write-Host "Kunde inte hämta licensfil!" -ForegroundColor Red
+    exit
+}
 
-# Be om kod
+# Fråga användaren om engångskod
 $inputCode = Read-Host "Ange din engångskod"
 
-# Hitta kod
+# Kolla om koden finns
 $item = $json | Where-Object { $_.code -eq $inputCode }
-if (-not $item) { Write-Host "Fel kod!" -ForegroundColor Red; exit }
-if ($item.used -eq $true) { Write-Host "Koden är redan använd!" -ForegroundColor Yellow; exit }
 
-# Markera som använd
+if (-not $item) {
+    Write-Host "Fel kod!" -ForegroundColor Red
+    exit
+}
+
+if ($item.used -eq $true) {
+    Write-Host "Den här koden är redan använd!" -ForegroundColor Yellow
+    exit
+}
+
+Write-Host "Kod OK! Kör script..." -ForegroundColor Green
+
+# --- Markera koden som använd ---
 $item.used = $true
 
-# Hämta filens SHA
+# Hämta filens SHA från GitHub (krävs för uppdatering)
+$apiUrl = "https://api.github.com/repos/$repoOwner/$repoName/contents/$filePath?ref=$branch"
 $sha = (Invoke-RestMethod -Uri $apiUrl -Headers @{Authorization = "token $token"}).sha
 
 # Konvertera JSON till Base64
@@ -37,9 +56,9 @@ $updatedJson = $json | ConvertTo-Json -Compress
 $bytes = [System.Text.Encoding]::UTF8.GetBytes($updatedJson)
 $base64Content = [Convert]::ToBase64String($bytes)
 
-# Skicka PUT-request till GitHub
+# --- Skicka PUT-request till GitHub ---
 $body = @{
-    message = "Markera kod $inputCode som used"
+    message = "Markera kod $inputCode som used via PabloEscobar.ps1"
     content = $base64Content
     sha     = $sha
     branch  = $branch
@@ -48,6 +67,16 @@ $body = @{
 Invoke-RestMethod -Uri $apiUrl -Method PUT -Headers @{Authorization = "token $token"} -Body $body -ContentType "application/json"
 
 Write-Host "Koden är nu markerad som använd på GitHub!" -ForegroundColor Green
+
+# =========================
+# Kör ditt tweak-script
+# =========================
+Write-Host "Ditt tweak-script körs nu..." -ForegroundColor Cyan
+function Run-Tweaks {
+    Write-Host "Tweaks aktiveras..." -ForegroundColor Green
+    # Lägg till ditt riktiga script här
+}
+Run-Tweaks
 
 ##kodsystem
 
@@ -13205,6 +13234,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
