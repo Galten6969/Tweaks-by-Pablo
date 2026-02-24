@@ -1,8 +1,9 @@
+<#
 .NOTES
-    Author         : Pablo Escobar
-    Runspace Author: @Pablo Escobar
-    GitHub         : https://github.com/Pablo Escobar
-    Version        : 26.02.11
+    Author : Pablo Escobar
+    GitHub : https://github.com/Pablo Escobar
+    Version : 26.02.11
+#>
 ##kodsystem
 # =========================================
 # PabloEscobar.ps1 - Engångskodskontroll med GitHub auto-update
@@ -13234,6 +13235,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
