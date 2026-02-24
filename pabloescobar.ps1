@@ -4,40 +4,36 @@
     GitHub         : https://github.com/Pablo Escobar
     Version        : 26.02.11
 ##kodsystem
-# URL till “raw” JSON‑filen
-$url = "https://raw.githubusercontent.com/Galten6969/Tweaks-by-Pablo/main/kod.json"
+$codeUrl = "https://raw.githubusercontent.com/Galten6969/Tweaks-by-Pablo/main/kod.json"
 
-# Läs JSON från GitHub
-$json = Invoke-RestMethod -Uri $url -UseBasicParsing
-
-# Fråga efter användarens kod
-$inputCode = Read-Host "Ange din engångskod"
-
-# Hitta kod i JSON
-$item = $json | Where‑Object { $_.code ‑eq $inputCode }
-
-if (-not $item) {
-    Write‑Host "Fel kod!" ‑ForegroundColor Red
+try {
+    $codes = Invoke-RestMethod -Uri $codeUrl -UseBasicParsing
+} catch {
+    Write-Host "Kunde inte hämta licensfil!" -ForegroundColor Red
     exit
 }
 
-if ($item.used ‑eq $true) {
-    Write‑Host "Den här koden är redan använd!" ‑ForegroundColor Yellow
+$userCode = Read-Host "Ange din kod"
+
+$match = $codes | Where-Object { $_.code -eq $userCode }
+
+if (-not $match) {
+    Write-Host "Fel kod!" -ForegroundColor Red
     exit
 }
 
-# Markera koden som använd
-$item.used = $true
+if ($match.used -eq $true) {
+    Write-Host "Den här koden är redan använd!" -ForegroundColor Yellow
+    exit
+}
 
-Write‑Host "Kod godkänd! Kör script..." ‑ForegroundColor Green
+Write-Host "Kod OK!" -ForegroundColor Green
 
-# Exempel på kod som körs
-# — Skriv din funktion här —
-# Write‑Host "Din hemliga funktion körs…"
+# =========================
+# HÄR UNDER LIGGER DITT RIKTIGA SCRIPT
+# =========================
 
-# Spara ändrad JSON lokalt
-$json | ConvertTo-Json | Out-File "lokal_kod.json"
-
+Write-Host "Ditt tweak-script körs nu..."
 ##kodsystem
 
 # Set DebugPreference based on the -Debug switch
@@ -13194,6 +13190,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
