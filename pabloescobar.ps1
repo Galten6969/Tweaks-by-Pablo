@@ -5289,25 +5289,24 @@ Function Show-CTTLogo {
     #>
 
     $asciiArt = @"
-    CCCCCCCCCCCCCTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
- CCC::::::::::::CT:::::::::::::::::::::TT:::::::::::::::::::::T
-CC:::::::::::::::CT:::::::::::::::::::::TT:::::::::::::::::::::T
-C:::::CCCCCCCC::::CT:::::TT:::::::TT:::::TT:::::TT:::::::TT:::::T
-C:::::C       CCCCCCTTTTTT  T:::::T  TTTTTTTTTTTT  T:::::T  TTTTTT
-C:::::C                     T:::::T                T:::::T
-C:::::C                     T:::::T                T:::::T
-C:::::C                     T:::::T                T:::::T
-C:::::C                     T:::::T                T:::::T
-C:::::C                     T:::::T                T:::::T
-C:::::C                     T:::::T                T:::::T
-C:::::C       CCCCCC        T:::::T                T:::::T
-C:::::CCCCCCCC::::C      TT:::::::TT            TT:::::::TT
-CC:::::::::::::::C       T:::::::::T            T:::::::::T
-CCC::::::::::::C         T:::::::::T            T:::::::::T
-  CCCCCCCCCCCCC          TTTTTTTTTTT            TTTTTTTTTTT
+PPPPPPPPPPPPPPPPP      AAA               BBBBBBBBBBBBBBBBB   LLLLLLLLLLL      OOOOOOOOO     
+P::::::::::::::::P    A:::A              B::::::::::::::::B  L:::::::::L    OO:::::::::OO   
+P::::::PPPPPP:::::P  A:::::A             B::::::BBBBBB:::::B L:::::::::L  OO:::::::::::::OO 
+PP:::::P     P:::::P A:::::::A            BB:::::B     B:::::BLL:::::::LL O:::::::OOO:::::::O
+  P::::P     P:::::PA:::::::::A             B::::B     B:::::B L:::::L   O::::::O   O::::::O
+  P::::P     P:::::PA:::::A:::::A            B::::B     B:::::B L:::::L   O:::::O     O:::::O
+  P::::PPPPPP:::::PA:::::A A:::::A           B::::BBBBBB:::::B  L:::::L   O:::::O     O:::::O
+  P:::::::::::::PP A:::::A   A:::::A          B:::::::::::::BB   L:::::L   O:::::O     O:::::O
+  P::::PPPPPPPPP  A:::::AAAAAAAAA:::::A       B::::BBBBBB:::::B  L:::::L   O:::::O     O:::::O
+  P::::P        A:::::::::::::::::::::A      B::::B     B:::::B L:::::L   O:::::O     O:::::O
+  P::::P       A:::::AAAAAAAAAAAAA:::::A     B::::B     B:::::B L:::::L   O::::::O   O::::::O
+PP::::::PP    A:::::A             A:::::A  BB:::::BBBBBB::::::BLL:::::::LL O:::::::OOO:::::::O
+P::::::::P   A:::::A               A:::::A B:::::::::::::::::B L:::::::::L  OO:::::::::::::OO 
+P::::::::P  A:::::A                 A:::::A B::::::::::::::::B  L:::::::::L    OO:::::::::OO   
+PPPPPPPPPP AAAAAAA                   AAAAAAA BBBBBBBBBBBBBBBBB   LLLLLLLLLLL      OOOOOOOOO     
 
-====Chris Titus Tech=====
-=====Windows Toolbox=====
+====Pablos Tweaks =====
+
 "@
 
     Write-Host $asciiArt
@@ -13165,5 +13164,6 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
