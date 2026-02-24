@@ -10826,7 +10826,7 @@ $sync.configs.tweaks = @'
   "WPFToggleDarkMode": {
     "Content": "Dark Theme for Windows",
     "Description": "Enable/Disable Dark Mode.",
-    "category": "Customize Preferences",
+    "category": "Personliga inställningar",
     "panel": "2",
     "Type": "Toggle",
     "registry": [
@@ -10858,7 +10858,7 @@ $sync.configs.tweaks = @'
   "WPFToggleBingSearch": {
     "Content": "Bing Search in Start Menu",
     "Description": "If enable then includes web search results from Bing in your Start Menu search.",
-    "category": "Customize Preferences",
+    "category": "Personliga inställningar",
     "panel": "2",
     "Type": "Toggle",
     "registry": [
@@ -10876,7 +10876,7 @@ $sync.configs.tweaks = @'
   "WPFToggleNumLock": {
     "Content": "NumLock on Startup",
     "Description": "Toggle the Num Lock key state when your computer starts.",
-    "category": "Customize Preferences",
+    "category": "Personliga inställningar",
     "panel": "2",
     "Type": "Toggle",
     "registry": [
@@ -10902,7 +10902,7 @@ $sync.configs.tweaks = @'
   "WPFToggleVerboseLogon": {
     "Content": "Verbose Messages During Logon",
     "Description": "Show detailed messages during the login process for troubleshooting and diagnostics.",
-    "category": "Customize Preferences",
+    "category": "Personliga inställningar",
     "panel": "2",
     "Type": "Toggle",
     "registry": [
@@ -10920,7 +10920,7 @@ $sync.configs.tweaks = @'
   "WPFToggleStartMenuRecommendations": {
     "Content": "Recommendations in Start Menu",
     "Description": "If disabled then you will not see recommendations in the Start Menu.",
-    "category": "Customize Preferences",
+    "category": "Personliga inställningar",
     "panel": "2",
     "Type": "Toggle",
     "registry": [
@@ -10960,7 +10960,7 @@ $sync.configs.tweaks = @'
   "WPFToggleHideSettingsHome": {
     "Content": "Remove Settings Home Page",
     "Description": "Removes the Home page in the Windows Settings app.",
-    "category": "Customize Preferences",
+    "category": "Personliga inställningar",
     "panel": "2",
     "Type": "Toggle",
     "registry": [
@@ -10977,7 +10977,7 @@ $sync.configs.tweaks = @'
   "WPFToggleMouseAcceleration": {
     "Content": "Mouse Acceleration",
     "Description": "If Enabled then Cursor movement is affected by the speed of your physical mouse movements.",
-    "category": "Customize Preferences",
+    "category": "Personliga inställningar",
     "panel": "2",
     "Type": "Toggle",
     "registry": [
@@ -11011,7 +11011,7 @@ $sync.configs.tweaks = @'
   "WPFToggleStickyKeys": {
     "Content": "Sticky Keys",
     "Description": "If Enabled then Sticky Keys is activated - Sticky keys is an accessibility feature of some graphical user interfaces which assists users who have physical disabilities or help users reduce repetitive strain injury.",
-    "category": "Customize Preferences",
+    "category": "Personliga inställningar",
     "panel": "2",
     "Type": "Toggle",
     "registry": [
@@ -11029,7 +11029,7 @@ $sync.configs.tweaks = @'
   "WPFToggleNewOutlook": {
     "Content": "New Outlook",
     "Description": "If disabled it removes the toggle for new Outlook, disables the new Outlook migration and makes sure the Outlook Application actually uses the old Outlook.",
-    "category": "Customize Preferences",
+    "category": "Personliga inställningar",
     "panel": "2",
     "Type": "Toggle",
     "registry": [
@@ -11071,7 +11071,7 @@ $sync.configs.tweaks = @'
   "WPFToggleMultiplaneOverlay": {
     "Content": "Disable Multiplane Overlay",
     "Description": "Disable the Multiplane Overlay which can sometimes cause issues with Graphics Cards.",
-    "category": "Customize Preferences",
+    "category": "Personliga inställningar",
     "panel": "2",
     "Type": "Toggle",
     "registry": [
@@ -11089,7 +11089,7 @@ $sync.configs.tweaks = @'
   "WPFToggleHiddenFiles": {
     "Content": "Show Hidden Files",
     "Description": "If Enabled then Hidden Files will be shown.",
-    "category": "Customize Preferences",
+    "category": "Personliga inställningar",
     "panel": "2",
     "Type": "Toggle",
     "registry": [
@@ -11113,7 +11113,7 @@ $sync.configs.tweaks = @'
   "WPFToggleShowExt": {
     "Content": "Show File Extensions",
     "Description": "If enabled then File extensions (e.g., .txt, .jpg) are visible.",
-    "category": "Customize Preferences",
+    "category": "Personliga inställningar",
     "panel": "2",
     "Type": "Toggle",
     "registry": [
@@ -11137,7 +11137,7 @@ $sync.configs.tweaks = @'
   "WPFToggleTaskbarSearch": {
     "Content": "Search Button in Taskbar",
     "Description": "If Enabled Search Button will be on the taskbar.",
-    "category": "Customize Preferences",
+    "category": "Personliga inställningar",
     "panel": "2",
     "Type": "Toggle",
     "registry": [
@@ -11155,7 +11155,7 @@ $sync.configs.tweaks = @'
   "WPFToggleTaskView": {
     "Content": "Task View Button in Taskbar",
     "Description": "If Enabled then Task View Button in Taskbar will be shown.",
-    "category": "Customize Preferences",
+    "category": "Personliga inställningar",
     "panel": "2",
     "Type": "Toggle",
     "registry": [
@@ -11173,7 +11173,7 @@ $sync.configs.tweaks = @'
   "WPFToggleTaskbarAlignment": {
     "Content": "Center Taskbar Items",
     "Description": "[Windows 11] If Enabled then the Taskbar Items will be shown on the Center, otherwise the Taskbar Items will be shown on the Left.",
-    "category": "Customize Preferences",
+    "category": "Personliga inställningar",
     "panel": "2",
     "Type": "Toggle",
     "registry": [
@@ -11191,7 +11191,7 @@ $sync.configs.tweaks = @'
   "WPFToggleDetailedBSoD": {
     "Content": "Detailed BSoD",
     "Description": "If Enabled then you will see a detailed Blue Screen of Death (BSOD) with more information.",
-    "category": "Customize Preferences",
+    "category": "Personliga inställningar",
     "panel": "2",
     "Type": "Toggle",
     "registry": [
@@ -11217,7 +11217,7 @@ $sync.configs.tweaks = @'
   "WPFToggleS3Sleep": {
     "Content": "S3 Sleep",
     "Description": "Toggles between Modern Standby and S3 sleep.",
-    "category": "Customize Preferences",
+    "category": "Personliga inställningar",
     "panel": "2",
     "Type": "Toggle",
     "registry": [
@@ -11277,7 +11277,7 @@ $sync.configs.tweaks = @'
   "WPFToggleDisableCrossDeviceResume": {
     "Content": "Cross-Device Resume",
     "Description": "This tweak controls the Resume function in Windows 11 24H2 and later, which allows you to resume an activity from a mobile device and vice-versa.",
-    "category": "Customize Preferences",
+    "category": "Personliga inställningar",
     "panel": "2",
     "Type": "Toggle",
     "registry": [
@@ -13167,6 +13167,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
