@@ -4545,11 +4545,11 @@ function Invoke-WPFtweaksbutton {
     $sync.ProcessRunning = $false
     $sync.form.Dispatcher.Invoke([action]{ Set-WinUtilTaskbaritem -state "None" -overlay "checkmark" })
     Write-Host "================================="
-    Write-Host "--     Tweaks are Finished    ---"
+    Write-Host "--     Allt lyckades    ---"
     Write-Host "================================="
 
     # $ButtonType = [System.Windows.MessageBoxButton]::OK
-    # $MessageboxTitle = "Tweaks are Finished "
+    # $MessageboxTitle = "Tweaks är klara "
     # $Messageboxbody = ("Done")
     # $MessageIcon = [System.Windows.MessageBoxImage]::Information
     # [System.Windows.MessageBox]::Show($Messageboxbody, $MessageboxTitle, $ButtonType, $MessageIcon)
@@ -13164,6 +13164,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
