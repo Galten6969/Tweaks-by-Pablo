@@ -3312,7 +3312,7 @@ function Invoke-WPFButton {
     Param ([string]$Button)
 
     # Use this to get the name of the button
-    #[System.Windows.MessageBox]::Show("$Button","Chris Titus Tech's Windows Utility","OK","Info")
+    #[System.Windows.MessageBox]::Show("$Button","Pablos Tweaks","OKEJ","Info")
     if (-not $sync.ProcessRunning) {
         Set-WinUtilProgressBar  -label "" -percent 0
     }
@@ -13165,4 +13165,5 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
