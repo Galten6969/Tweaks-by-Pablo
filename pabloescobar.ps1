@@ -1,11 +1,55 @@
+
+# ================== OTP LOCK ==================
+$usedCodesFile = "$PSScriptRoot\used_codes.txt"
+
+if (!(Test-Path $usedCodesFile)) {
+    New-Item $usedCodesFile -ItemType File | Out-Null
+}
+
+$usedCodes = Get-Content $usedCodesFile
+
+$validCodes = @(
+    "PABLO-001",
+    "PABLO-002",
+    "PABLO-003"
+)
+
+$code = [Microsoft.VisualBasic.Interaction]::InputBox(
+    "Enter your one-time activation code:",
+    "Activation Required",
+    ""
+)
+
+if ([string]::IsNullOrWhiteSpace($code)) {
+    [System.Windows.MessageBox]::Show("No code entered. Exiting.")
+    exit
+}
+
+if ($usedCodes -contains $code) {
+    [System.Windows.MessageBox]::Show("This code has already been used.")
+    exit
+}
+
+if ($validCodes -notcontains $code) {
+    [System.Windows.MessageBox]::Show("Invalid activation code.")
+    exit
+}
+
+Add-Content $usedCodesFile $code
+# ================== OTP LOCK END ==================
+
 <#
 .NOTES
-    Author         : Chris Titus @christitustech
-    Runspace Author: @DeveloperDurp
-    GitHub         : https://github.com/ChrisTitusTech
+    Author         : Pablo Escobar
+    Runspace Author: @Pablo Escobar
+    GitHub         : https://github.com/Pablo Escobar
     Version        : 26.02.11
 #>
 
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+$OutputEncoding = [System.Text.Encoding]::UTF8
+[System.Threading.Thread]::CurrentThread.CurrentCulture = "sv-SE"
+[System.Threading.Thread]::CurrentThread.CurrentUICulture = "sv-SE"
 param (
     [switch]$Debug,
     [string]$Config,
@@ -13167,6 +13211,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
