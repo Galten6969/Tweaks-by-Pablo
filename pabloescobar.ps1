@@ -10826,7 +10826,7 @@ $sync.configs.tweaks = @'
   "WPFToggleDarkMode": {
     "Content": "Dark Theme for Windows",
     "Description": "Enable/Disable Dark Mode.",
-    "category": "Personliga inställningar",
+    "category": "Personliga installningar",
     "panel": "2",
     "Type": "Toggle",
     "registry": [
@@ -13167,6 +13167,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
