@@ -5,33 +5,48 @@
     Version : 26.02.11
 #>
 ##kodsystem
-# Kör som admin
-if (-not ([Security.Principal.WindowsPrincipal] `
-[Security.Principal.WindowsIdentity]::GetCurrent()
-).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-    Start-Process powershell "-File `"$PSCommandPath`"" -Verb RunAs
+
+# ===== KONFIGURATION =====
+$licenseFile = ".\licenses.txt"          # Samma fil som botten använder
+$licenseKey = "TEST123"                  # Licensnyckel som ska kontrolleras
+$hwid = (Get-WmiObject Win32_ComputerSystemProduct).UUID  # Få datorns HWID
+$commandToRun = "notepad.exe"            # Ditt kommando om licens OK
+
+# ===== LÄS LICENSES =====
+if (-not (Test-Path $licenseFile)) {
+    Write-Host "License file saknas."
     exit
 }
 
-$hwid = (Get-CimInstance Win32_ComputerSystemProduct).UUID
-$license = Read-Host "Enter license key"
+$found = $false
+$lines = Get-Content $licenseFile
 
-$webhook = "https://discord.com/api/webhooks/1476216984478683207/flLsPu_f8MJWbiKX_ukwRt5kvuBFDZxGFoD-_X0inxapKXjVQ2Mc2WdHs6piEpBgMMD5"
+for ($i=0; $i -lt $lines.Count; $i++) {
+    $line = $lines[$i].Trim()
+    if ($line -eq "") { continue }
+    $parts = $line -split ":", 2
+    if ($parts[0] -eq $licenseKey) {
+        $found = $true
+        if ($parts[1] -eq "" -or $parts[1] -eq $hwid) {
+            # Spara HWID om den är tom
+            if ($parts[1] -eq "") {
+                $lines[$i] = "$licenseKey:$hwid"
+                $lines | Set-Content $licenseFile
+                Write-Host "HWID registrerad."
+            }
+            Write-Host "License OK"
+            # Kör kommandot
+            Start-Process $commandToRun
+        } else {
+            Write-Host "License USED på annan dator"
+        }
+    }
+}
 
-$msg = "!check $license $hwid"
+if (-not $found) {
+    Write-Host "INVALID LICENSE"
+}
 
-Invoke-RestMethod -Uri $webhook -Method Post -Body @{content=$msg}
-
-Write-Host "Waiting for bot response..."
-Start-Sleep 5
-
-# Här förenklar vi: i riktig version pollar du Discord API
-# eller kör via REST bot endpoint
-
-# 🔥 EXEMPEL KOMMANDO
-powershell -Command "netsh advfirewall set allprofiles state off"
-
-pause
 ##kodsystem
 
 # Set DebugPreference based on the -Debug switch
@@ -13188,6 +13203,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
