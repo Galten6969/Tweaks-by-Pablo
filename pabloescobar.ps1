@@ -5,22 +5,42 @@
     Version : 26.02.11
 #>
 ##kodsystem
+# ===== Ange licens =====
+$licenseKey = Read-Host "Ange din licensnyckel"
+
+# ===== Hämta HWID =====
 $hwid = (Get-WmiObject Win32_ComputerSystemProduct).UUID
-$licenseKey = "TEST123"
 
-$response = Invoke-RestMethod -Uri "http://127.0.0.1:5000/check" `
-    -Method POST `
-    -Body (@{key=$licenseKey; hwid=$hwid} | ConvertTo-Json) `
-    -ContentType "application/json"
+# ===== Kontrollera licens via botten =====
+try {
+    $response = Invoke-RestMethod -Uri "http://127.0.0.1:5000/check" `
+        -Method POST `
+        -Body (@{key=$licenseKey; hwid=$hwid} | ConvertTo-Json) `
+        -ContentType "application/json"
+} catch {
+    Write-Host "Kunde inte kontakta licensservern. Kontrollera att botten körs."
+    exit 1
+}
 
-Write-Host "Server svarade:" $response.status
-
-if ($response.status -eq "OK") {
-    Start-Process "notepad.exe"  # Ditt kommando
-} elseif ($response.status -eq "USED") {
-    Write-Host "Licensen används på annan dator"
-} else {
-    Write-Host "INVALID LICENSE"
+# ===== Hantera svar =====
+switch ($response.status) {
+    "OK" {
+        Write-Host "Licens OK! Kör kommando..."
+        # Exempelkommando:
+        Start-Process "notepad.exe"
+    }
+    "USED" {
+        Write-Host "Licensen används på annan dator! Avslutar..."
+        exit 1
+    }
+    "INVALID" {
+        Write-Host "Ogiltig licens! Avslutar..."
+        exit 1
+    }
+    default {
+        Write-Host "Okänt svar från servern: $($response.status)"
+        exit 1
+    }
 }
 
 ##kodsystem
@@ -13179,6 +13199,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
