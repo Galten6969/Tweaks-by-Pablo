@@ -5,47 +5,10 @@
     Version : 26.02.11
 #>
 ##kodsystem
-
-# ===== KONFIGURATION =====
-$licenseFile = ".\licenses.txt"          # Samma fil som botten använder
-$licenseKey = "TEST123"                  # Licensnyckel som ska kontrolleras
-$hwid = (Get-WmiObject Win32_ComputerSystemProduct).UUID  # Få datorns HWID
-$commandToRun = "notepad.exe"            # Ditt kommando om licens OK
-
-# ===== LÄS LICENSES =====
-if (-not (Test-Path $licenseFile)) {
-    Write-Host "License file saknas."
-    exit
-}
-
-$found = $false
-$lines = Get-Content $licenseFile
-
-for ($i=0; $i -lt $lines.Count; $i++) {
-    $line = $lines[$i].Trim()
-    if ($line -eq "") { continue }
-    $parts = $line -split ":", 2
-    if ($parts[0] -eq $licenseKey) {
-        $found = $true
-        if ($parts[1] -eq "" -or $parts[1] -eq $hwid) {
-            # Spara HWID om den är tom
-            if ($parts[1] -eq "") {
-                $lines[$i] = "$licenseKey:$hwid"
-                $lines | Set-Content $licenseFile
-                Write-Host "HWID registrerad."
-            }
-            Write-Host "License OK"
-            # Kör kommandot
-            Start-Process $commandToRun
-        } else {
-            Write-Host "License USED på annan dator"
-        }
-    }
-}
-
-if (-not $found) {
-    Write-Host "INVALID LICENSE"
-}
+$hwid = (Get-WmiObject Win32_ComputerSystemProduct).UUID
+$licenseKey = "TEST123"
+$response = Invoke-RestMethod -Uri "http://127.0.0.1:5000/check" -Method POST -Body (@{key=$licenseKey; hwid=$hwid} | ConvertTo-Json) -ContentType "application/json"
+Write-Host $response.status
 
 ##kodsystem
 
@@ -13203,6 +13166,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
