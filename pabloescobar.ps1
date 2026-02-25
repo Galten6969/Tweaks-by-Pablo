@@ -7,8 +7,21 @@
 ##kodsystem
 $hwid = (Get-WmiObject Win32_ComputerSystemProduct).UUID
 $licenseKey = "TEST123"
-$response = Invoke-RestMethod -Uri "http://127.0.0.1:5000/check" -Method POST -Body (@{key=$licenseKey; hwid=$hwid} | ConvertTo-Json) -ContentType "application/json"
-Write-Host $response.status
+
+$response = Invoke-RestMethod -Uri "http://127.0.0.1:5000/check" `
+    -Method POST `
+    -Body (@{key=$licenseKey; hwid=$hwid} | ConvertTo-Json) `
+    -ContentType "application/json"
+
+Write-Host "Server svarade:" $response.status
+
+if ($response.status -eq "OK") {
+    Start-Process "notepad.exe"  # Ditt kommando
+} elseif ($response.status -eq "USED") {
+    Write-Host "Licensen används på annan dator"
+} else {
+    Write-Host "INVALID LICENSE"
+}
 
 ##kodsystem
 
@@ -13166,6 +13179,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
