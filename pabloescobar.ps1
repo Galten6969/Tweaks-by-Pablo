@@ -26,8 +26,6 @@ try {
 switch ($response.status) {
     "OK" {
         Write-Host "Licens OK! Kör kommando..."
-        # Exempelkommando:
-        Start-Process "notepad.exe"
     }
     "USED" {
         Write-Host "Licensen används på annan dator! Avslutar..."
@@ -13199,6 +13197,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
