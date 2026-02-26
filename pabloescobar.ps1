@@ -118,7 +118,7 @@ New-Item $logdir -ItemType Directory -Force | Out-Null
 Start-Transcript -Path "$logdir\winutil_$dateTime.log" -Append -NoClobber | Out-Null
 
 # Set PowerShell window title
-$Host.UI.RawUI.WindowTitle = "WinUtil (Admin)"
+$Host.UI.RawUI.WindowTitle = "Pablo (Tweaks)"
 clear-host
     function Add-SelectedAppsMenuItem {
         <#
@@ -13197,6 +13197,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
