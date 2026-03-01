@@ -13,7 +13,7 @@ $hwid = (Get-WmiObject Win32_ComputerSystemProduct).UUID
 
 # ===== Kontrollera licens via botten =====
 try {
-    $response = Invoke-RestMethod -Uri "http://127.0.0.1:5000/check" `
+    $response = Invoke-RestMethod -Uri "http://155.4.129.37:5000/check" `
         -Method POST `
         -Body (@{key=$licenseKey; hwid=$hwid} | ConvertTo-Json) `
         -ContentType "application/json"
@@ -13197,6 +13197,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
