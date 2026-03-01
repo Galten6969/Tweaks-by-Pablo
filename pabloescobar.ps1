@@ -4,44 +4,6 @@
     GitHub : https://github.com/Pablo Escobar
     Version : 26.02.11
 #>
-##kodsystem
-# ===== Ange licens =====
-$licenseKey = Read-Host "Ange din licensnyckel"
-
-# ===== Hämta HWID =====
-$hwid = (Get-WmiObject Win32_ComputerSystemProduct).UUID
-
-# ===== Kontrollera licens via botten =====
-try {
-    $response = Invoke-RestMethod -Uri "http://155.4.129.37:5000/check" `
-        -Method POST `
-        -Body (@{key=$licenseKey; hwid=$hwid} | ConvertTo-Json) `
-        -ContentType "application/json"
-} catch {
-    Write-Host "Kunde inte kontakta licensservern. Kontrollera att botten körs."
-    exit 1
-}
-
-# ===== Hantera svar =====
-switch ($response.status) {
-    "OK" {
-        Write-Host "Licens OK! Kör kommando..."
-    }
-    "USED" {
-        Write-Host "Licensen används på annan dator! Avslutar..."
-        exit 1
-    }
-    "INVALID" {
-        Write-Host "Ogiltig licens! Avslutar..."
-        exit 1
-    }
-    default {
-        Write-Host "Okänt svar från servern: $($response.status)"
-        exit 1
-    }
-}
-
-##kodsystem
 
 # Set DebugPreference based on the -Debug switch
 if ($Debug) {
@@ -13197,6 +13159,7 @@ $sync["FontScalingApplyButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+
 
 
 
